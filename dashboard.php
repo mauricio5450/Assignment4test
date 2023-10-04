@@ -22,16 +22,20 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Username</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Action</th>
             </tr>
             <?php 
-                $sql = "SELECT id, username, email, password from users";
+                $sql = "SELECT id,FirstName,LastName, username, email, password from users";
                 $result = $con->query($sql);
                 if($result-> num_rows>0){
                     while($row = $result->fetch_assoc()){
                         echo "<tr><td>".$row["id"] . "</td>
+                              <td>".$row["FirstName"]."</td>
+                              <td>".$row["LastName"]."</td>
                               <td>". $row["username"]."</td>
                               <td>".$row["email"]."</td>
                               <td>".$row["password"]."</td>

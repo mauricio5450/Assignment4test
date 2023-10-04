@@ -11,7 +11,13 @@
             if(isset($_REQUEST['username'])){
                 $username = stripslashes($_REQUEST['username']);
                 $username = mysqli_real_escape_string($con,$username);
+
+                $firstname = stripslashes($_REQUEST['firstname']);
+                $firstname = mysqli_real_escape_string($con,$firstname);
                 
+                $lastname = stripslashes($_REQUEST['lastname']);
+                $lastname = mysqli_real_escape_string($con,$lastname);
+
                 $email = stripslashes($_REQUEST['email']);
                 $email = mysqli_real_escape_string($con,$email);
 
@@ -19,7 +25,7 @@
                 $password = mysqli_real_escape_string($con,$password);
 
                 $create_datetime = date("Y-m-d H:i:s");
-                $query = "INSERT into `users` (username,password,email,create_datetime) VALUES('$username','" . md5($password)."','$email', '$create_datetime')"; 
+                $query = "INSERT into `users` (username,password,email,create_datetime, FirstName,LastName) VALUES('$username','" . md5($password)."','$email', '$create_datetime','$firstname','$lastname')"; 
                 
                 $result = mysqli_query($con,$query);
                 if($result){
@@ -38,9 +44,9 @@
         ?>
         <form class = "form" action="" method="">
             <h1>New User</h1>
-            <div class="mb-3 mt-3">
-                <input type="text" class="login-input" name="username" placeholder="Username" required/>
-            </div>
+            <input type="text" class="login-input" name="username" placeholder="Username" required/>
+            <input type="text" class="login-input" name="firstname" placeholder="First Name" required/>
+            <input type="text" class="login-input" name="lastname" placeholder="Last Name" required/>
             <input type="text" class="login-input" name="email" placeholder="Email Address">
             <input type="password" class="login-input" name = "password" placeholder="Password">
             <input type="submit" name="submit" value="Register" class="login-button">
